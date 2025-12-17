@@ -3,7 +3,17 @@ import ServicesHero from './components/ServicesHero';
 import ServiceSection from './components/ServiceSection';
 import Footer from '../components/Footer';
 
-const services = [
+interface Service {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  image: string;
+  color: 'dourado' | 'bege';
+}
+
+const services: Service[] = [
   {
     id: 'visualizacao-3d',
     title: 'Visualização 3D',
