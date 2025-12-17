@@ -1,22 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paleta de cores - Agência de Imóveis 3D */
+  --bege-quente: #e7e1d8;
+  --off-white: #f7f5f2;
+  --preto-carvao: #1c1c1c;
+  --cinza-pedra: #6f6f6f;
+  --dourado-fosco: #c2a25d;
+
+  /* Variáveis semânticas */
+  --background: var(--bege-quente);
+  --background-section: var(--off-white);
+  --foreground: var(--preto-carvao);
+  --foreground-secondary: var(--cinza-pedra);
+  --accent: var(--dourado-fosco);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-section: var(--background-section);
   --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-playfair: var(--font-playfair);
 }
 
 body {
