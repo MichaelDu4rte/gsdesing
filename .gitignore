@@ -40,5 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# large video files
-public/hero-video.mov
+# large video files (using Git LFS)
+# public/hero-video.mov - now tracked by Git LFS
