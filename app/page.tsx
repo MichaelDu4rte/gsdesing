@@ -5,6 +5,8 @@ import Partners from './components/Partners';
 import Projects from './components/Projects';
 import EcommerceServices from './components/EcommerceServices';
 import EcommerceCTA from './components/EcommerceCTA';
+import Testimonials from './components/Testimonials';
+import ProductDigitalization from './components/ProductDigitalization';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
@@ -18,6 +20,8 @@ export default function Home() {
       <Projects />
       <EcommerceServices />
       <EcommerceCTA />
+      <Testimonials />
+      <ProductDigitalization />
       <ContactSection />
       <Footer />
       </main>
