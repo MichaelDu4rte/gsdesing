@@ -7,6 +7,7 @@ import EcommerceServices from './components/EcommerceServices';
 import EcommerceCTA from './components/EcommerceCTA';
 import Testimonials from './components/Testimonials';
 import ProductDigitalization from './components/ProductDigitalization';
+import FAQ from './components/FAQ';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Testimonials />
       <ProductDigitalization />
       <ContactSection />
+      <FAQ />
       <Footer />
       </main>
   );
