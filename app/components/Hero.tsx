@@ -87,17 +87,17 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(194, 162, 93, 0.3)' }}
             whileTap={{ scale: 0.95 }}
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide rounded-sm hover:bg-[var(--dourado-fosco)]/90 transition-all duration-300"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide rounded-sm hover:bg-[var(--dourado-fosco)]/90 transition-all duration-300 cursor-pointer"
           >
-            Ver Portfólio
+            Explorar Projetos
           </motion.button>
           <motion.button
             onClick={() => setIsModalOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-[var(--off-white)]/50 text-[var(--off-white)] text-sm sm:text-base font-light tracking-wide rounded-sm hover:bg-[var(--off-white)]/10 transition-all duration-300 backdrop-blur-sm"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-[var(--off-white)]/50 text-[var(--off-white)] text-sm sm:text-base font-light tracking-wide rounded-sm hover:bg-[var(--off-white)]/10 transition-all duration-300 backdrop-blur-sm cursor-pointer"
           >
-            Solicitar Orçamento
+            Começar Agora
           </motion.button>
         </motion.div>
       </div>

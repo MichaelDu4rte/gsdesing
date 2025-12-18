@@ -89,7 +89,7 @@ export default function EcommerceCTA() {
               transition={{ duration: 0.8, delay: 0.7 }}
               whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(194, 162, 93, 0.4)' }}
               whileTap={{ scale: 0.95 }}
-              className="group relative inline-flex items-center gap-3 px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide transition-all duration-300 overflow-hidden"
+              className="group relative inline-flex items-center gap-3 px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide transition-all duration-300 overflow-hidden cursor-pointer"
               style={{
                 clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
               }}
@@ -102,7 +102,7 @@ export default function EcommerceCTA() {
                 transition={{ duration: 0.6 }}
               />
               
-              <span className="relative z-10">Solicitar Orçamento</span>
+              <span className="relative z-10">Transformar Meu E-commerce</span>
               <ArrowRight className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-1" />
             </motion.button>
           </motion.div>

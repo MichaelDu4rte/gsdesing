@@ -50,7 +50,6 @@ export default function Navbar() {
     { href: '/', label: 'Início', path: '/', exact: true },
     { href: '/servicos', label: 'Serviços', path: '/servicos', exact: true },
     { href: '/portfolio', label: 'Portfólio', path: '/portfolio', exact: true },
-    { href: '/#contato', label: 'Contato', path: null, exact: false },
   ];
 
   return (
@@ -140,13 +139,13 @@ export default function Navbar() {
               onClick={() => setIsModalOpen(true)}
               whileHover={{ scale: 1.05, boxShadow: '0 8px 25px rgba(194, 162, 93, 0.4)' }}
               whileTap={{ scale: 0.95 }}
-              className={`px-8 py-3 text-sm font-medium tracking-wider uppercase transition-all duration-300 relative overflow-hidden group ${scrolled
+              className={`px-8 py-3 text-sm font-medium tracking-wider uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer ${scrolled
                 ? 'bg-[var(--dourado-fosco)] text-[var(--preto-carvao)]'
                 : 'bg-[var(--dourado-fosco)] text-[var(--preto-carvao)]'
                 }`}
               style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
             >
-              <span className="relative z-10">Orçamento</span>
+              <span className="relative z-10">Fale Conosco</span>
               <motion.div
                 className="absolute inset-0 bg-[var(--preto-carvao)]"
                 initial={{ x: '-100%' }}
@@ -154,7 +153,7 @@ export default function Navbar() {
                 transition={{ duration: 0.3 }}
               />
               <span className="absolute inset-0 flex items-center justify-center text-[var(--dourado-fosco)] z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Orçamento
+                Fale Conosco
               </span>
             </motion.button>
           </motion.div>
@@ -163,7 +162,7 @@ export default function Navbar() {
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
-            className={`lg:hidden relative z-50 transition-colors duration-300 ${scrolled || isMobileMenuOpen ? 'text-[var(--preto-carvao)]' : 'text-[var(--off-white)]'
+            className={`lg:hidden relative z-50 transition-colors duration-300 cursor-pointer ${scrolled || isMobileMenuOpen ? 'text-[var(--preto-carvao)]' : 'text-[var(--off-white)]'
               }`}
             aria-label="Menu"
           >
@@ -318,7 +317,7 @@ export default function Navbar() {
                     className="block w-full px-8 py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm font-medium tracking-wider uppercase text-center transition-all duration-300 relative overflow-hidden group cursor-pointer"
                     style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
                   >
-                    <span className="relative z-10">Solicitar Orçamento</span>
+                    <span className="relative z-10">Começar Projeto</span>
                     <motion.div
                       className="absolute inset-0 bg-[var(--preto-carvao)]"
                       initial={{ x: '-100%' }}
@@ -326,7 +325,7 @@ export default function Navbar() {
                       transition={{ duration: 0.3 }}
                     />
                     <span className="absolute inset-0 flex items-center justify-center text-[var(--dourado-fosco)] z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Solicitar Orçamento
+                      Começar Projeto
                     </span>
                   </motion.div>
                 </div>

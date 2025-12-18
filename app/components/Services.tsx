@@ -137,11 +137,11 @@ export default function Services() {
 
                     {/* Botão de ação */}
                     <motion.div
-                      className="flex items-center gap-2 text-[var(--dourado-fosco)] group-hover:gap-4 transition-all duration-300"
+                      className="flex items-center gap-2 text-[var(--dourado-fosco)] group-hover:gap-4 transition-all duration-300 cursor-pointer"
                       whileHover={{ x: 4 }}
                     >
                       <span className="text-xs md:text-sm font-light tracking-[0.15em] uppercase">
-                        Explorar
+                        {service.id === 'demo' ? 'Agendar Agora' : service.id === 'portfolio' ? 'Ver Projetos' : 'Conhecer Mais'}
                       </span>
                       <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1" />
                     </motion.div>

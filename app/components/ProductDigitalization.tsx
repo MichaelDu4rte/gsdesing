@@ -222,7 +222,7 @@ export default function ProductDigitalization() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 whileHover={{ scale: 1.05, x: 4 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center gap-3 px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide transition-all duration-300 overflow-hidden"
+                className="group relative inline-flex items-center gap-3 px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide transition-all duration-300 overflow-hidden cursor-pointer"
                 style={{
                   clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
                 }}
@@ -235,7 +235,7 @@ export default function ProductDigitalization() {
                   transition={{ duration: 0.6 }}
                 />
                 
-                <span className="relative z-10">Solicitar Orçamento</span>
+                <span className="relative z-10">Digitalizar Meus Produtos</span>
                 <ArrowRight className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-1" />
               </motion.button>
             </motion.div>
@@ -330,7 +330,7 @@ export default function ProductDigitalization() {
                   onClick={() => moveSlider('left')}
                   whileHover={{ scale: 1.1, x: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[var(--bege-quente)]/50 hover:bg-[var(--dourado-fosco)]/20 text-[var(--dourado-fosco)] hover:text-[var(--preto-carvao)] transition-all duration-300"
+                  className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[var(--bege-quente)]/50 hover:bg-[var(--dourado-fosco)]/20 text-[var(--dourado-fosco)] hover:text-[var(--preto-carvao)] transition-all duration-300 cursor-pointer"
                   style={{
                     clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
                   }}
@@ -351,7 +351,7 @@ export default function ProductDigitalization() {
                   onClick={() => moveSlider('right')}
                   whileHover={{ scale: 1.1, x: 2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[var(--bege-quente)]/50 hover:bg-[var(--dourado-fosco)]/20 text-[var(--dourado-fosco)] hover:text-[var(--preto-carvao)] transition-all duration-300"
+                  className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[var(--bege-quente)]/50 hover:bg-[var(--dourado-fosco)]/20 text-[var(--dourado-fosco)] hover:text-[var(--preto-carvao)] transition-all duration-300 cursor-pointer"
                   style={{
                     clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
                   }}

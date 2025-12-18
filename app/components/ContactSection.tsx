@@ -325,7 +325,7 @@ export default function ContactSection() {
                     disabled={isSubmitting}
                     whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group relative w-full px-6 sm:px-8 py-4 sm:py-5 bg-[var(--preto-carvao)] text-[var(--off-white)] text-xs sm:text-sm font-light tracking-[0.1em] uppercase overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                    className="group relative w-full px-6 sm:px-8 py-4 sm:py-5 bg-[var(--preto-carvao)] text-[var(--off-white)] text-xs sm:text-sm font-light tracking-[0.1em] uppercase overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer"
                     style={{
                       clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
                     }}

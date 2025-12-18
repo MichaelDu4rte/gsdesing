@@ -296,7 +296,7 @@ export default function Projects() {
                     setDirection(index > currentIndex ? 'right' : 'left');
                     setCurrentIndex(index);
                   }}
-                  className={`h-1 rounded-full transition-all duration-300 flex-shrink-0 ${
+                  className={`h-1 rounded-full transition-all duration-300 flex-shrink-0 cursor-pointer ${
                     currentIndex === index
                       ? 'bg-[var(--dourado-fosco)] w-6 sm:w-8'
                       : 'bg-[var(--bege-quente)] w-1.5 sm:w-2 hover:bg-[var(--bege-quente)]/80'
