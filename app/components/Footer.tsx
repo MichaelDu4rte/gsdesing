@@ -49,11 +49,11 @@ export default function Footer() {
                 className="relative"
               >
                 <Image
-                  src="/logo.png"
+                  src="/logowhite.png"
                   alt="GSTUDIO DESIGN Logo"
-                  width={150}
-                  height={50}
-                  className="h-10 sm:h-12 w-auto object-contain"
+                  width={200}
+                  height={70}
+                  className="h-14 sm:h-16 md:h-20 w-auto object-contain"
                 />
               </motion.div>
             </Link>

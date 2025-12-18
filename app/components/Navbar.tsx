@@ -76,11 +76,11 @@ export default function Navbar() {
               className="relative"
             >
               <Image
-                src="/logo.png"
+                src={scrolled ? "/logo.png" : "/logowhite.png"}
                 alt="GSTUDIO DESIGN Logo"
-                width={120}
-                height={40}
-                className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+                width={200}
+                height={70}
+                className="h-12 sm:h-16 md:h-20 w-auto object-contain"
                 priority
               />
             </motion.div>
