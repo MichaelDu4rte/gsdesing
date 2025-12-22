@@ -3,29 +3,18 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { X, ZoomIn, Loader2 } from 'lucide-react';
-
-// Helper function para codificar caminhos de imagens com espaços
-const encodeImagePath = (path: string): string => {
-  // Se o caminho já começa com /, manter e codificar apenas o nome do arquivo
-  if (path.startsWith('/')) {
-    const parts = path.split('/');
-    const filename = parts[parts.length - 1];
-    const dir = parts.slice(0, -1).join('/');
-    // Codificar apenas o nome do arquivo, mantendo o diretório
-    return dir + '/' + encodeURIComponent(filename).replace(/%2F/g, '/');
-  }
-  return encodeURIComponent(path);
-};
+import { X, ZoomIn } from 'lucide-react';
 
 // Array de projetos com diferentes tamanhos para criar layout harmonioso
+// Usando apenas imagens project1-9 que são confiáveis e carregam rápido
+// Distribuição planejada: alternando tamanhos para evitar espaços vazios
 const portfolioItems = [
   {
     id: 1,
     title: 'Residencial Premium',
     image: '/project1.jpg',
     category: 'Residencial',
-    size: 'large', // 2x2
+    size: 'medium', // 1x1
   },
   {
     id: 2,
@@ -39,7 +28,7 @@ const portfolioItems = [
     title: 'Luxury Hotel',
     image: '/project3.jpg',
     category: 'Hospitalidade',
-    size: 'tall', // 1x2
+    size: 'medium', // 1x1
   },
   {
     id: 4,
@@ -60,14 +49,14 @@ const portfolioItems = [
     title: 'Heritage Building',
     image: '/project6.jpg',
     category: 'Patrimonial',
-    size: 'large', // 2x2
+    size: 'tall', // 1x2
   },
   {
     id: 7,
     title: 'Residential Complex',
     image: '/project7.jpg',
     category: 'Residencial',
-    size: 'tall', // 1x2
+    size: 'medium', // 1x1
   },
   {
     id: 8,
@@ -81,91 +70,161 @@ const portfolioItems = [
     title: 'Warehouse Facility',
     image: '/project9.jpg',
     category: 'Logística',
-    size: 'wide', // 2x1
+    size: 'large', // 2x2
   },
   {
     id: 10,
+    title: 'Modern Office',
+    image: '/project1.jpg',
+    category: 'Comercial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 11,
+    title: 'Luxury Apartment',
+    image: '/project2.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 12,
+    title: 'Retail Space',
+    image: '/project3.jpg',
+    category: 'Varejo',
+    size: 'tall', // 1x2
+  },
+  {
+    id: 13,
+    title: 'Urban Development',
+    image: '/project4.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 14,
+    title: 'Commercial Plaza',
+    image: '/project5.jpg',
+    category: 'Comercial',
+    size: 'wide', // 2x1
+  },
+  {
+    id: 15,
+    title: 'Residential Tower',
+    image: '/project6.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 16,
+    title: 'Business District',
+    image: '/project7.jpg',
+    category: 'Comercial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 17,
+    title: 'Luxury Residence',
+    image: '/project8.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 18,
+    title: 'Design Studio',
+    image: '/project9.jpg',
+    category: 'Comercial',
+    size: 'large', // 2x2
+  },
+  {
+    id: 19,
+    title: 'Modern Interior',
+    image: '/project1.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 20,
+    title: 'Contemporary Space',
+    image: '/project2.jpg',
+    category: 'Residencial',
+    size: 'tall', // 1x2
+  },
+  {
+    id: 21,
+    title: 'Elegant Design',
+    image: '/project3.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 22,
     title: 'Ambiente Kiu Amêndoa',
     image: '/AMBIENTE-KIU-AMENDOA.jpg',
     category: 'Residencial',
     size: 'medium', // 1x1
   },
   {
-    id: 11,
-    title: 'Banqueta Potenza',
-    image: '/02-AMBIENTE-BANQUETA-POTENZA copy.jpg',
-    category: 'Comercial',
-    size: 'tall', // 1x2
-  },
-  {
-    id: 12,
-    title: 'Banqueta Alta Bossa',
-    image: '/AMBIENTE-BOSSA-BANQUETA-ALTA copy.jpg',
-    category: 'Residencial',
-    size: 'large', // 2x2
-  },
-  {
-    id: 13,
+    id: 23,
     title: 'Bistro Moderno',
     image: '/Briefing Bistro_1-1 copiar.jpg',
-    category: 'Comercial',
-    size: 'medium', // 1x1
-  },
-  {
-    id: 14,
-    title: 'Bistro Elegante',
-    image: '/Briefing Bistro_5 copiar.jpg',
     category: 'Hospitalidade',
     size: 'tall', // 1x2
   },
   {
-    id: 15,
-    title: 'Chanel Boutique',
-    image: '/Briefing Chanel copiar.jpg',
-    category: 'Varejo',
-    size: 'wide', // 2x1
+    id: 24,
+    title: 'Bistro Elegante',
+    image: '/Briefing Bistro_5 copiar.jpg',
+    category: 'Hospitalidade',
+    size: 'medium', // 1x1
   },
   {
-    id: 16,
+    id: 25,
     title: 'Projeto Rita',
     image: '/Briefing Rita_4 copiar.jpg',
     category: 'Residencial',
     size: 'medium', // 1x1
   },
   {
-    id: 17,
+    id: 26,
     title: 'Chicago Modern',
     image: '/Chicago_17.jpg',
     category: 'Comercial',
     size: 'large', // 2x2
   },
   {
-    id: 18,
+    id: 27,
     title: 'Cozinha Clássica',
     image: '/cozinha_classica_c2_desfoque.jpg',
     category: 'Residencial',
     size: 'tall', // 1x2
   },
   {
-    id: 19,
-    title: 'Identidade Visual',
-    image: '/IDENTIDADE_11-1_View04 copy.jpg',
-    category: 'Comercial',
-    size: 'medium', // 1x1
-  },
-  {
-    id: 20,
+    id: 28,
     title: 'Mesa Potenza',
     image: '/MESA-RETANGULAR-POTENZA-02 copy.jpg',
     category: 'Residencial',
     size: 'wide', // 2x1
   },
   {
-    id: 21,
+    id: 29,
     title: 'Cuidado Design',
     image: '/--Cuidado_11_View05 copy.jpg',
     category: 'Residencial',
-    size: 'large', // 2x2
+    size: 'medium', // 1x1
+  },
+  {
+    id: 30,
+    title: 'Banqueta Potenza',
+    image: '/02-AMBIENTE-BANQUETA-POTENZA copy.jpg',
+    category: 'Residencial',
+    size: 'tall', // 1x2
+  },
+  {
+    id: 31,
+    title: 'Banqueta Alta Bossa',
+    image: '/AMBIENTE-BOSSA-BANQUETA-ALTA copy.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
   },
 ];
 
@@ -176,63 +235,64 @@ export default function Gallery() {
 
   // Pré-carregar imagens em alta resolução quando o usuário passa o mouse
   const handleMouseEnter = (imageSrc: string) => {
-    const encodedSrc = encodeImagePath(imageSrc);
-    if (!preloadedImages.has(encodedSrc)) {
+    if (!preloadedImages.has(imageSrc)) {
       // Pré-carregar a imagem em alta resolução usando Image object
       // Isso força o navegador a baixar e cachear a imagem completa
       const img = new window.Image();
       // Usar a URL completa para garantir que seja a mesma imagem
-      img.src = encodedSrc;
+      img.src = imageSrc;
       img.onload = () => {
-        setPreloadedImages((prev) => new Set(prev).add(encodedSrc));
+        setPreloadedImages((prev) => new Set(prev).add(imageSrc));
       };
       img.onerror = () => {
         // Mesmo em caso de erro, marcar como tentado para não tentar novamente
-        setPreloadedImages((prev) => new Set(prev).add(encodedSrc));
+        setPreloadedImages((prev) => new Set(prev).add(imageSrc));
       };
     }
   };
 
+  // Reset loading quando selectedImage muda (separado para evitar warning)
+  useEffect(() => {
+    setImageLoading(true);
+  }, [selectedImage]);
+
   // Verificar se a imagem já está carregada quando o modal abre
   useEffect(() => {
-    if (selectedImage) {
-      const item = portfolioItems.find((item) => item.id === selectedImage);
-      if (item) {
-        // Sempre começar com loading true
-        setImageLoading(true);
+    if (!selectedImage) return;
+    
+    const item = portfolioItems.find((item) => item.id === selectedImage);
+    if (!item) return;
 
-        // Verificar se a imagem está no cache do navegador
-        const img = new window.Image();
-        const encodedImage = encodeImagePath(item.image);
-        img.onload = () => {
-          // Imagem está no cache, pode mostrar imediatamente
-          // Mas dar um pequeno delay para garantir que o DOM está pronto
-          setTimeout(() => {
-            setImageLoading(false);
-          }, 100);
-        };
-        img.onerror = () => {
-          // Se não está no cache, o componente Image vai carregar
-          // Manter loading true até o onLoad do componente Image
-        };
-        img.src = encodedImage;
-      }
-    } else {
-      // Reset loading state quando modal fecha
-      setImageLoading(true);
-    }
+    // Verificar se a imagem está no cache do navegador
+    const img = new window.Image();
+    img.onload = () => {
+      // Imagem está no cache, pode mostrar imediatamente
+      // Mas dar um pequeno delay para garantir que o DOM está pronto
+      setTimeout(() => {
+        setImageLoading(false);
+      }, 100);
+    };
+    img.onerror = () => {
+      // Se não está no cache, o componente Image vai carregar
+      // Manter loading true até o onLoad do componente Image
+    };
+    img.src = item.image;
   }, [selectedImage]);
 
   const getSizeClasses = (size: string) => {
     switch (size) {
       case 'large':
-        return 'col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2 md:row-span-2';
+        // 2x2 - ocupa 2 colunas e 2 linhas (2x altura base)
+        return 'col-span-1 sm:col-span-2 lg:col-span-2 xl:col-span-2 row-span-2';
       case 'tall':
-        return 'col-span-1 row-span-1 sm:row-span-2 md:row-span-2';
+        // 1x2 - ocupa 1 coluna e 2 linhas (2x altura base)
+        return 'col-span-1 row-span-2';
       case 'wide':
-        return 'col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 row-span-1';
+        // 2x1 - ocupa 2 colunas e 1 linha (1x altura base)
+        return 'col-span-1 sm:col-span-2 lg:col-span-2 xl:col-span-2 row-span-1';
       case 'medium':
       default:
+        // 1x1 - tamanho padrão (1x altura base)
         return 'col-span-1 row-span-1';
     }
   };
@@ -260,8 +320,14 @@ export default function Gallery() {
         </p>
       </motion.div>
 
-      {/* Grid de Galeria - Ocupa toda a largura */}
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-[1px] auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] lg:auto-rows-[320px] xl:auto-rows-[350px] bg-[var(--preto-carvao)]">
+      {/* Grid de Galeria - Layout com grid-auto-rows e grid-auto-flow: dense para preencher buracos */}
+      <div 
+        className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] bg-[var(--preto-carvao)]" 
+        style={{ 
+          gridAutoRows: 'minmax(200px, auto)',
+          gridAutoFlow: 'dense'
+        }}
+      >
         {portfolioItems.map((item, index) => (
           <motion.div
             key={item.id}
@@ -269,26 +335,25 @@ export default function Gallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className={`relative group cursor-pointer overflow-hidden bg-[var(--background)] ${getSizeClasses(
+            className={`relative group cursor-pointer overflow-hidden bg-[var(--preto-carvao)] ${getSizeClasses(
               item.size
             )}`}
             onClick={() => setSelectedImage(item.id)}
             onMouseEnter={() => handleMouseEnter(item.image)}
           >
             {/* Imagem */}
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full bg-[var(--preto-carvao)]">
               <Image
-                src={encodeImagePath(item.image)}
+                src={item.image}
                 alt={item.title}
                 fill
-                quality={95}
+                quality={100}
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px, (max-width: 1920px) 1200px, 1600px"
-                unoptimized={item.image.includes(' ') || item.image.includes('copy')}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, (max-width: 1920px) 25vw, 40vw"
                 priority={index < 6}
                 loading={index < 6 ? 'eager' : 'lazy'}
-                onError={(e) => {
-                  console.error('Erro ao carregar imagem:', item.image, 'Encoded:', encodeImagePath(item.image));
+                onError={() => {
+                  console.error('Erro ao carregar imagem:', item.image, 'Item ID:', item.id);
                 }}
               />
 
@@ -429,13 +494,12 @@ export default function Gallery() {
                       className="relative w-full h-full"
                     >
                       <Image
-                        src={encodeImagePath(selectedItem.image)}
+                        src={selectedItem.image}
                         alt={selectedItem.title}
                         fill
                         quality={100}
                         className="object-contain"
-                        sizes="90vw"
-                        unoptimized={true}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 85vw"
                         priority
                         onLoad={() => {
                           setImageLoading(false);
