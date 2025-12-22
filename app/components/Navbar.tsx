@@ -52,12 +52,16 @@ export default function Navbar() {
     { href: '/portfolio', label: 'Portfólio', path: '/portfolio', exact: true },
   ];
 
+  // Determinar se a navbar deve ser sempre branca (serviços e portfolio)
+  const isWhiteNavbar = pathname === '/servicos' || pathname === '/portfolio';
+  const shouldBeWhite = isWhiteNavbar || scrolled;
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${shouldBeWhite
         ? 'bg-[var(--off-white)]/98 backdrop-blur-xl shadow-lg border-b border-[var(--bege-quente)]/20'
         : 'bg-black/20 backdrop-blur-md border-b border-white/10'
         }`}
@@ -75,7 +79,7 @@ export default function Navbar() {
               className="relative"
             >
               <Image
-                src={scrolled ? "/logo.png" : "/logowhite.png"}
+                src={shouldBeWhite ? "/logo.png" : "/logowhite.png"}
                 alt="GSTUDIO DESIGN Logo"
                 width={200}
                 height={70}
@@ -107,7 +111,7 @@ export default function Navbar() {
                     <span
                       className={`text-sm font-light tracking-[0.1em] uppercase transition-colors duration-300 relative z-10 ${isActive
                         ? 'text-[var(--dourado-fosco)]'
-                        : scrolled
+                        : shouldBeWhite
                           ? 'text-[var(--preto-carvao)] group-hover:text-[var(--dourado-fosco)]'
                           : 'text-[var(--off-white)]/90 group-hover:text-[var(--dourado-fosco)]'
                         }`}
@@ -139,10 +143,7 @@ export default function Navbar() {
               onClick={() => setIsModalOpen(true)}
               whileHover={{ scale: 1.05, boxShadow: '0 8px 25px rgba(194, 162, 93, 0.4)' }}
               whileTap={{ scale: 0.95 }}
-              className={`px-8 py-3 text-sm font-medium tracking-wider uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer ${scrolled
-                ? 'bg-[var(--dourado-fosco)] text-[var(--preto-carvao)]'
-                : 'bg-[var(--dourado-fosco)] text-[var(--preto-carvao)]'
-                }`}
+              className="px-8 py-3 text-sm font-medium tracking-wider uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer bg-[var(--dourado-fosco)] text-[var(--preto-carvao)]"
               style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
             >
               <span className="relative z-10">Fale Conosco</span>
@@ -162,7 +163,7 @@ export default function Navbar() {
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
-            className={`lg:hidden relative z-50 transition-colors duration-300 cursor-pointer ${scrolled || isMobileMenuOpen ? 'text-[var(--preto-carvao)]' : 'text-[var(--off-white)]'
+            className={`lg:hidden relative z-50 transition-colors duration-300 cursor-pointer ${shouldBeWhite || isMobileMenuOpen ? 'text-[var(--preto-carvao)]' : 'text-[var(--off-white)]'
               }`}
             aria-label="Menu"
           >

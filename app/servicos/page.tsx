@@ -25,7 +25,7 @@ const services: Service[] = [
       'Iluminação natural e artificial',
       'Pós-produção profissional',
     ],
-    image: '/service-visualizacao.jpg',
+    image: '/IDENTIDADE_11-1_View04 copy.jpg',
     color: 'dourado',
   },
   {
@@ -39,7 +39,7 @@ const services: Service[] = [
       'Compatível com VR',
       'Integração web e mobile',
     ],
-    image: '/service-tour.jpg',
+    image: '/AMBIENTE-KIU-AMENDOA.jpg',
     color: 'bege',
   },
   {
@@ -53,7 +53,7 @@ const services: Service[] = [
       'Pós-produção e edição',
       'Múltiplos formatos de entrega',
     ],
-    image: '/service-animacao.jpg',
+    image: '/Chicago_17.jpg',
     color: 'dourado',
   },
   {
@@ -67,7 +67,7 @@ const services: Service[] = [
       'Anotações e medidas',
       'Exportação de imagens',
     ],
-    image: '/service-maquete.jpg',
+    image: '/cozinha_classica_c2_desfoque.jpg',
     color: 'bege',
   },
 ];

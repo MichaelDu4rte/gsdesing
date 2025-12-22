@@ -5,6 +5,17 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { Check } from 'lucide-react';
 
+// Helper function para codificar caminhos de imagens com espaços
+const encodeImagePath = (path: string): string => {
+  if (path.startsWith('/')) {
+    const parts = path.split('/');
+    const filename = parts[parts.length - 1];
+    const dir = parts.slice(0, -1).join('/');
+    return dir + '/' + encodeURIComponent(filename);
+  }
+  return encodeURIComponent(path);
+};
+
 interface Service {
   id: string;
   title: string;
@@ -37,8 +48,8 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
     <section
       ref={ref}
       className={`relative min-h-screen flex items-center ${
-        index === 0 ? 'pt-32 md:pt-40' : 'py-20 md:py-32'
-      } pb-20 md:pb-32 overflow-hidden ${bgColor}`}
+        index === 0 ? 'pt-16 sm:pt-20 md:pt-32 lg:pt-40' : 'py-12 sm:py-16 md:py-20 lg:py-32'
+      } pb-12 sm:pb-16 md:pb-20 lg:pb-32 overflow-hidden ${bgColor}`}
     >
       {/* Background dinâmico com gradientes sutis */}
       <div className="absolute inset-0">
@@ -52,13 +63,13 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
         />
         {/* Gradiente de transição superior para primeira seção */}
         {index === 0 && (
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[var(--bege-quente)] to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-16 sm:h-24 md:h-32 bg-gradient-to-b from-[var(--bege-quente)] to-transparent" />
         )}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 w-full">
         <div
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center ${
             !isEven ? 'lg:grid-flow-dense' : ''
           }`}
         >
@@ -73,10 +84,10 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-4"
+              className="mb-3 sm:mb-4"
             >
               <span
-                className={`text-xs sm:text-sm font-light tracking-[0.25em] uppercase ${
+                className={`text-[10px] sm:text-xs md:text-sm font-light tracking-[0.25em] uppercase ${
                   service.color === 'dourado'
                     ? 'text-[var(--dourado-fosco)]'
                     : 'text-[var(--cinza-pedra)]'
@@ -90,7 +101,7 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-[var(--preto-carvao)] mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light tracking-tight text-[var(--preto-carvao)] mb-3 sm:mb-4"
             >
               {service.title}
             </motion.h2>
@@ -99,7 +110,7 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className={`text-lg sm:text-xl md:text-2xl font-light mb-6 ${
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl font-light mb-4 sm:mb-6 ${
                 service.color === 'dourado'
                   ? 'text-[var(--dourado-fosco)]'
                   : 'text-[var(--cinza-pedra)]'
@@ -112,7 +123,7 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-base sm:text-lg text-[var(--cinza-pedra)] leading-relaxed mb-8"
+              className="text-sm sm:text-base md:text-lg text-[var(--cinza-pedra)] leading-relaxed mb-6 sm:mb-8"
             >
               {service.description}
             </motion.p>
@@ -122,7 +133,7 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="space-y-4"
+              className="space-y-3 sm:space-y-4"
             >
               {service.features.map((feature, idx) => (
                 <motion.div
@@ -130,17 +141,17 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.7 + idx * 0.1 }}
-                  className="flex items-start gap-3"
+                  className="flex items-start gap-2 sm:gap-3"
                 >
                   <div
-                    className={`mt-1 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
+                    className={`mt-0.5 sm:mt-1 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center ${
                       service.color === 'dourado'
                         ? 'bg-[var(--dourado-fosco)]/20'
                         : 'bg-[var(--bege-quente)]/40'
                     }`}
                   >
                     <Check
-                      className={`w-3 h-3 ${
+                      className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${
                         service.color === 'dourado'
                           ? 'text-[var(--dourado-fosco)]'
                           : 'text-[var(--cinza-pedra)]'
@@ -148,7 +159,7 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
                       strokeWidth={3}
                     />
                   </div>
-                  <span className="text-sm sm:text-base text-[var(--preto-carvao)] font-light">
+                  <span className="text-xs sm:text-sm md:text-base text-[var(--preto-carvao)] font-light leading-relaxed">
                     {feature}
                   </span>
                 </motion.div>
@@ -163,30 +174,20 @@ export default function ServiceSection({ service, index }: ServiceSectionProps) 
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className={!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}
           >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-[var(--bege-quente)]/30 group">
-              {/* Placeholder da imagem */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--bege-quente)]/50 to-[var(--off-white)]/30 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 rounded-full bg-[var(--dourado-fosco)]/20 flex items-center justify-center">
-                    <span className="text-4xl md:text-5xl font-light text-[var(--dourado-fosco)]">
-                      {index + 1}
-                    </span>
-                  </div>
-                  <p className="text-sm md:text-base font-light text-[var(--cinza-pedra)]">
-                    {service.title}
-                  </p>
-                </div>
-              </div>
-
-              {/* Descomente quando tiver as imagens reais:
+            <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-[var(--bege-quente)]/30 group mt-6 sm:mt-8 lg:mt-0">
+              {/* Imagem */}
               <Image
-                src={service.image}
+                src={encodeImagePath(service.image)}
                 alt={service.title}
                 fill
+                quality={90}
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
+                unoptimized={service.image.includes(' ') || service.image.includes('copy')}
+                onError={(e) => {
+                  console.error('Erro ao carregar imagem:', service.image);
+                }}
               />
-              */}
 
               {/* Overlay no hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

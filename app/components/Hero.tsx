@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import Link from 'next/link';
 import ContactModal from './ContactModal';
 
 export default function Hero() {
@@ -84,13 +85,15 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
         >
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(194, 162, 93, 0.3)' }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide rounded-sm hover:bg-[var(--dourado-fosco)]/90 transition-all duration-300 cursor-pointer"
-          >
-            Explorar Projetos
-          </motion.button>
+          <Link href="/portfolio" className="w-full sm:w-auto">
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(194, 162, 93, 0.3)' }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm sm:text-base font-medium tracking-wide rounded-sm hover:bg-[var(--dourado-fosco)]/90 transition-all duration-300 cursor-pointer"
+            >
+              Explorar Projetos
+            </motion.button>
+          </Link>
           <motion.button
             onClick={() => setIsModalOpen(true)}
             whileHover={{ scale: 1.05 }}

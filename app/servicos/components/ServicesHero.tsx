@@ -17,11 +17,11 @@ export default function ServicesHero() {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center">
+    <section className="relative min-h-screen md:h-screen w-full overflow-hidden flex items-center">
       <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2">
         {/* Conteúdo à Esquerda */}
-        <div className="relative h-screen w-full flex items-center justify-start bg-[var(--off-white)] order-1 lg:order-1">
-          <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        <div className="relative min-h-[60vh] md:h-screen w-full flex items-center justify-start bg-[var(--off-white)] order-1 lg:order-1 py-12 md:py-0">
+          <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -33,18 +33,17 @@ export default function ServicesHero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-extralight tracking-tight text-[var(--preto-carvao)] mb-8 leading-[0.95]"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[10rem] font-extralight tracking-tight text-[var(--preto-carvao)] mb-6 sm:mb-8 leading-[0.95]"
               >
-                <span className="block">Criamos</span>
                 <motion.span
                   className="block font-normal text-[var(--dourado-fosco)]"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.4, type: 'spring' }}
                 >
-                  realidades
+                  NOSSOS
                 </motion.span>
-                <span className="block">3D</span>
+                <span className="block">SERVIÇOS</span>
               </motion.h1>
 
               {/* Botões */}
@@ -52,12 +51,12 @@ export default function ServicesHero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4 mb-8"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8"
               >
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(194, 162, 93, 0.3)' }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-sm font-medium tracking-wide rounded-sm hover:bg-[var(--dourado-fosco)]/90 transition-all duration-300"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[var(--dourado-fosco)] text-[var(--preto-carvao)] text-xs sm:text-sm font-medium tracking-wide rounded-sm hover:bg-[var(--dourado-fosco)]/90 transition-all duration-300"
                 >
                   Ver Serviços
                 </motion.button>
@@ -65,7 +64,7 @@ export default function ServicesHero() {
                   onClick={() => setIsModalOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 border border-[var(--preto-carvao)]/20 text-[var(--preto-carvao)] text-sm font-light tracking-wide rounded-sm hover:bg-[var(--preto-carvao)]/5 transition-all duration-300"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-[var(--preto-carvao)]/20 text-[var(--preto-carvao)] text-xs sm:text-sm font-light tracking-wide rounded-sm hover:bg-[var(--preto-carvao)]/5 transition-all duration-300"
                 >
                   Solicitar Orçamento
                 </motion.button>
@@ -87,7 +86,7 @@ export default function ServicesHero() {
                   className="flex flex-col items-center gap-2"
                 >
                   {/* Linha vertical */}
-                  <div className="w-[1px] h-16 sm:h-20 md:h-24 bg-[var(--cinza-pedra)]/40 group-hover:bg-[var(--dourado-fosco)] transition-colors duration-300" />
+                  <div className="w-[1px] h-12 sm:h-16 md:h-20 lg:h-24 bg-[var(--cinza-pedra)]/40 group-hover:bg-[var(--dourado-fosco)] transition-colors duration-300" />
 
                   {/* Seta SVG customizada fina */}
                   <svg
@@ -113,7 +112,7 @@ export default function ServicesHero() {
         </div>
 
         {/* Vídeo à Direita */}
-        <div className="relative h-screen w-full overflow-hidden order-2 lg:order-2">
+        <div className="relative min-h-[40vh] sm:min-h-[50vh] md:h-screen w-full overflow-hidden order-2 lg:order-2">
           <video
             ref={videoRef}
             autoPlay
@@ -122,18 +121,21 @@ export default function ServicesHero() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/hero-video.mp4" type="video/mp4" />
+            <source src="/VIDEO-2.mov" type="video/quicktime" />
+            <source src="/VIDEO-2.mov" type="video/mp4" />
             {/* Fallback */}
             <div className="w-full h-full bg-gradient-to-br from-[var(--bege-quente)] to-[var(--off-white)]" />
           </video>
 
           {/* Overlay sutil */}
-          <div className="absolute inset-0 bg-gradient-to-l from-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-l from-black/20 to-transparent lg:from-black/20 lg:to-transparent" />
+          {/* Overlay para mobile - mais escuro para melhor contraste */}
+          <div className="absolute inset-0 bg-black/10 md:bg-transparent" />
         </div>
       </div>
 
       {/* Gradiente de transição na parte inferior para suavizar a passagem */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[var(--bege-quente)]/30 to-[var(--bege-quente)] z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 md:h-32 bg-gradient-to-b from-transparent via-[var(--bege-quente)]/30 to-[var(--bege-quente)] z-10 pointer-events-none" />
 
       {/* Contact Modal */}
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

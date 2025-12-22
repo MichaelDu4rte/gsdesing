@@ -82,7 +82,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-[var(--bege-quente)] overflow-hidden">
+    <section id="contato" className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-[var(--bege-quente)] overflow-hidden">
       {/* Background dinâmico */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,var(--dourado-fosco)/15%,transparent_60%)]" />

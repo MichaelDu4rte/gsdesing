@@ -4,32 +4,43 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Package, Box, Video, Blocks } from 'lucide-react';
 
+// Helper function para codificar caminhos de imagens com espaços
+const encodeImagePath = (path: string): string => {
+  if (path.startsWith('/')) {
+    const parts = path.split('/');
+    const filename = parts[parts.length - 1];
+    const dir = parts.slice(0, -1).join('/');
+    return dir + '/' + encodeURIComponent(filename);
+  }
+  return encodeURIComponent(path);
+};
+
 const ecommerceServices = [
   {
     id: 1,
     title: 'Imagens de Produto (Packshot)',
-    image: '/project1.jpg', // Substitua pela imagem real do serviço
+    image: '/CADEIRA-KIU-CARAMELO-FRENTE copy.png',
     icon: Package,
     description: 'Fotografia profissional de produtos com qualidade premium para destacar seus itens',
   },
   {
     id: 2,
     title: 'Criação de Ambientes',
-    image: '/project2.jpg', // Substitua pela imagem real do serviço
+    image: '/CADEIRA-LANATI-OFF-WHITE copy.png',
     icon: Box,
     description: 'Ambientes 3D realistas que contextualizam seus produtos de forma impactante',
   },
   {
     id: 3,
     title: 'Vídeos Demonstrativos',
-    image: '/project3.jpg', // Substitua pela imagem real do serviço
+    image: '/CADEIRA-DOBRAVEL-FRENTE copy.png',
     icon: Video,
     description: 'Vídeos profissionais que mostram seus produtos em ação e aumentam conversões',
   },
   {
     id: 4,
     title: 'Blocos SKP',
-    image: '/project4.jpg', // Substitua pela imagem real do serviço
+    image: '/CADEIRA-KIU-CARAMELO-COSTAS copy.png',
     icon: Blocks,
     description: 'Modelos 3D prontos para uso em plataformas de e-commerce e visualização',
   },
@@ -120,12 +131,16 @@ export default function EcommerceServices() {
                   {/* Container da Imagem */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-[var(--bege-quente)]/20">
                     <Image
-                      src={service.image}
+                      src={encodeImagePath(service.image)}
                       alt={service.title}
                       fill
                       quality={90}
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-contain bg-[var(--off-white)] transition-transform duration-700 group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      unoptimized={service.image.includes(' ') || service.image.includes('copy')}
+                      onError={(e) => {
+                        console.error('Erro ao carregar imagem:', service.image);
+                      }}
                     />
                     
                     {/* Overlay gradiente sutil */}

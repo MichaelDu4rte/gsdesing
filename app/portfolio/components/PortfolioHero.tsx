@@ -16,14 +16,14 @@ export default function PortfolioHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-[var(--off-white)]"
+      className="relative min-h-screen h-screen w-full overflow-hidden bg-[var(--off-white)]"
     >
       {/* Elementos 3D flutuantes de fundo */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Forma geométrica suave - círculo com blur */}
         <motion.div
           style={{ y, opacity }}
-          className="absolute top-1/4 -left-32 w-96 h-96"
+          className="absolute top-1/4 -left-16 sm:-left-24 md:-left-32 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
@@ -39,7 +39,7 @@ export default function PortfolioHero() {
 
         <motion.div
           style={{ y: useTransform(scrollYProgress, [0, 1], [0, -200]), opacity }}
-          className="absolute bottom-1/4 -right-32 w-80 h-80"
+          className="absolute bottom-1/4 -right-16 sm:-right-24 md:-right-32 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
@@ -103,20 +103,20 @@ export default function PortfolioHero() {
       </div>
 
       {/* Conteúdo principal */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12">
+      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="max-w-5xl mx-auto text-center">
           {/* Título principal */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
             <motion.h1
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem] font-extralight text-[var(--preto-carvao)] leading-[0.9] tracking-tight"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[12rem] font-extralight text-[var(--preto-carvao)] leading-[0.9] tracking-tight"
               style={{ 
                 fontFamily: "var(--font-playfair), 'Georgia', serif"
               }}
@@ -145,7 +145,7 @@ export default function PortfolioHero() {
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-32 h-px bg-[var(--accent)] mx-auto mb-8"
+            className="w-24 sm:w-32 h-px bg-[var(--accent)] mx-auto mb-6 sm:mb-8"
           />
 
           {/* Subtítulo */}
@@ -153,7 +153,7 @@ export default function PortfolioHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="text-lg sm:text-xl md:text-2xl text-[var(--foreground-secondary)] font-light tracking-wide max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-[var(--foreground-secondary)] font-light tracking-wide max-w-2xl mx-auto leading-relaxed px-4"
           >
             Visualizações que transformam projetos em
             <br className="hidden sm:block" />
@@ -168,7 +168,7 @@ export default function PortfolioHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 group cursor-pointer"
+        className="absolute bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-10 group cursor-pointer"
         onClick={() => {
           window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }}
@@ -179,7 +179,7 @@ export default function PortfolioHero() {
           className="flex flex-col items-center gap-2"
         >
           {/* Linha vertical */}
-          <div className="w-[1px] h-16 sm:h-20 md:h-24 bg-[var(--cinza-pedra)]/40 group-hover:bg-[var(--dourado-fosco)] transition-colors duration-300" />
+          <div className="w-[1px] h-12 sm:h-16 md:h-20 lg:h-24 bg-[var(--cinza-pedra)]/40 group-hover:bg-[var(--dourado-fosco)] transition-colors duration-300" />
           
           {/* Seta SVG customizada fina */}
           <svg
@@ -202,7 +202,7 @@ export default function PortfolioHero() {
       </motion.div>
 
       {/* Gradiente de transição inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[var(--bege-quente)]/20 to-[var(--bege-quente)] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-transparent via-[var(--bege-quente)]/20 to-[var(--bege-quente)] pointer-events-none" />
     </section>
   );
 }

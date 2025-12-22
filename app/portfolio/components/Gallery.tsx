@@ -5,6 +5,19 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { X, ZoomIn, Loader2 } from 'lucide-react';
 
+// Helper function para codificar caminhos de imagens com espaços
+const encodeImagePath = (path: string): string => {
+  // Se o caminho já começa com /, manter e codificar apenas o nome do arquivo
+  if (path.startsWith('/')) {
+    const parts = path.split('/');
+    const filename = parts[parts.length - 1];
+    const dir = parts.slice(0, -1).join('/');
+    // Codificar apenas o nome do arquivo, mantendo o diretório
+    return dir + '/' + encodeURIComponent(filename).replace(/%2F/g, '/');
+  }
+  return encodeURIComponent(path);
+};
+
 // Array de projetos com diferentes tamanhos para criar layout harmonioso
 const portfolioItems = [
   {
@@ -65,30 +78,93 @@ const portfolioItems = [
   },
   {
     id: 9,
-    title: 'Modern Apartment',
-    image: '/project1.jpg',
-    category: 'Residencial',
+    title: 'Warehouse Facility',
+    image: '/project9.jpg',
+    category: 'Logística',
     size: 'wide', // 2x1
   },
   {
     id: 10,
-    title: 'Luxury Villa',
-    image: '/project2.jpg',
+    title: 'Ambiente Kiu Amêndoa',
+    image: '/AMBIENTE-KIU-AMENDOA.jpg',
     category: 'Residencial',
     size: 'medium', // 1x1
   },
   {
     id: 11,
-    title: 'Office Building',
-    image: '/project3.jpg',
+    title: 'Banqueta Potenza',
+    image: '/02-AMBIENTE-BANQUETA-POTENZA copy.jpg',
     category: 'Comercial',
     size: 'tall', // 1x2
   },
   {
     id: 12,
-    title: 'Resort Complex',
-    image: '/project4.jpg',
+    title: 'Banqueta Alta Bossa',
+    image: '/AMBIENTE-BOSSA-BANQUETA-ALTA copy.jpg',
+    category: 'Residencial',
+    size: 'large', // 2x2
+  },
+  {
+    id: 13,
+    title: 'Bistro Moderno',
+    image: '/Briefing Bistro_1-1 copiar.jpg',
+    category: 'Comercial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 14,
+    title: 'Bistro Elegante',
+    image: '/Briefing Bistro_5 copiar.jpg',
     category: 'Hospitalidade',
+    size: 'tall', // 1x2
+  },
+  {
+    id: 15,
+    title: 'Chanel Boutique',
+    image: '/Briefing Chanel copiar.jpg',
+    category: 'Varejo',
+    size: 'wide', // 2x1
+  },
+  {
+    id: 16,
+    title: 'Projeto Rita',
+    image: '/Briefing Rita_4 copiar.jpg',
+    category: 'Residencial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 17,
+    title: 'Chicago Modern',
+    image: '/Chicago_17.jpg',
+    category: 'Comercial',
+    size: 'large', // 2x2
+  },
+  {
+    id: 18,
+    title: 'Cozinha Clássica',
+    image: '/cozinha_classica_c2_desfoque.jpg',
+    category: 'Residencial',
+    size: 'tall', // 1x2
+  },
+  {
+    id: 19,
+    title: 'Identidade Visual',
+    image: '/IDENTIDADE_11-1_View04 copy.jpg',
+    category: 'Comercial',
+    size: 'medium', // 1x1
+  },
+  {
+    id: 20,
+    title: 'Mesa Potenza',
+    image: '/MESA-RETANGULAR-POTENZA-02 copy.jpg',
+    category: 'Residencial',
+    size: 'wide', // 2x1
+  },
+  {
+    id: 21,
+    title: 'Cuidado Design',
+    image: '/--Cuidado_11_View05 copy.jpg',
+    category: 'Residencial',
     size: 'large', // 2x2
   },
 ];
@@ -100,18 +176,19 @@ export default function Gallery() {
 
   // Pré-carregar imagens em alta resolução quando o usuário passa o mouse
   const handleMouseEnter = (imageSrc: string) => {
-    if (!preloadedImages.has(imageSrc)) {
+    const encodedSrc = encodeImagePath(imageSrc);
+    if (!preloadedImages.has(encodedSrc)) {
       // Pré-carregar a imagem em alta resolução usando Image object
       // Isso força o navegador a baixar e cachear a imagem completa
       const img = new window.Image();
       // Usar a URL completa para garantir que seja a mesma imagem
-      img.src = imageSrc;
+      img.src = encodedSrc;
       img.onload = () => {
-        setPreloadedImages((prev) => new Set(prev).add(imageSrc));
+        setPreloadedImages((prev) => new Set(prev).add(encodedSrc));
       };
       img.onerror = () => {
         // Mesmo em caso de erro, marcar como tentado para não tentar novamente
-        setPreloadedImages((prev) => new Set(prev).add(imageSrc));
+        setPreloadedImages((prev) => new Set(prev).add(encodedSrc));
       };
     }
   };
@@ -126,6 +203,7 @@ export default function Gallery() {
 
         // Verificar se a imagem está no cache do navegador
         const img = new window.Image();
+        const encodedImage = encodeImagePath(item.image);
         img.onload = () => {
           // Imagem está no cache, pode mostrar imediatamente
           // Mas dar um pequeno delay para garantir que o DOM está pronto
@@ -137,7 +215,7 @@ export default function Gallery() {
           // Se não está no cache, o componente Image vai carregar
           // Manter loading true até o onLoad do componente Image
         };
-        img.src = item.image;
+        img.src = encodedImage;
       }
     } else {
       // Reset loading state quando modal fecha
@@ -148,11 +226,11 @@ export default function Gallery() {
   const getSizeClasses = (size: string) => {
     switch (size) {
       case 'large':
-        return 'col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2';
+        return 'col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2 md:row-span-2';
       case 'tall':
-        return 'col-span-1 row-span-1 md:row-span-2';
+        return 'col-span-1 row-span-1 sm:row-span-2 md:row-span-2';
       case 'wide':
-        return 'col-span-1 md:col-span-2 lg:col-span-2 row-span-1';
+        return 'col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 row-span-1';
       case 'medium':
       default:
         return 'col-span-1 row-span-1';
@@ -164,26 +242,26 @@ export default function Gallery() {
     : null;
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 lg:py-32 bg-[var(--preto-carvao)]">
+    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-[var(--preto-carvao)]">
       {/* Título da Seção */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-12 md:mb-16 px-4 sm:px-6 lg:px-8"
+        className="text-center mb-8 sm:mb-12 md:mb-16 px-4 sm:px-6 lg:px-8"
       >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[var(--off-white)] mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-[var(--off-white)] mb-3 sm:mb-4">
           Galeria de <span className="font-normal text-[var(--accent)]">Projetos</span>
         </h2>
-        <p className="text-[var(--off-white)]/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-light">
+        <p className="text-[var(--off-white)]/70 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto font-light px-4">
           Cada projeto é uma obra de arte, cuidadosamente renderizada para capturar
           a essência e o potencial de cada espaço
         </p>
       </motion.div>
 
       {/* Grid de Galeria - Ocupa toda a largura */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] auto-rows-[280px] md:auto-rows-[320px] lg:auto-rows-[350px] bg-[var(--preto-carvao)]">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-[1px] auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] lg:auto-rows-[320px] xl:auto-rows-[350px] bg-[var(--preto-carvao)]">
         {portfolioItems.map((item, index) => (
           <motion.div
             key={item.id}
@@ -200,15 +278,18 @@ export default function Gallery() {
             {/* Imagem */}
             <div className="relative w-full h-full">
               <Image
-                src={item.image}
+                src={encodeImagePath(item.image)}
                 alt={item.title}
                 fill
                 quality={95}
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px, (max-width: 1920px) 1200px, 1600px"
-                unoptimized={false}
+                unoptimized={item.image.includes(' ') || item.image.includes('copy')}
                 priority={index < 6}
                 loading={index < 6 ? 'eager' : 'lazy'}
+                onError={(e) => {
+                  console.error('Erro ao carregar imagem:', item.image, 'Encoded:', encodeImagePath(item.image));
+                }}
               />
 
               {/* Overlay gradiente */}
@@ -219,21 +300,21 @@ export default function Gallery() {
             </div>
 
             {/* Informações do projeto */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <div className="text-[var(--off-white)]">
-                <span className="text-xs md:text-sm font-light text-[var(--accent)] uppercase tracking-wider mb-2 block">
+                <span className="text-[10px] sm:text-xs md:text-sm font-light text-[var(--accent)] uppercase tracking-wider mb-1 sm:mb-2 block">
                   {item.category}
                 </span>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-light mb-2">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light mb-1 sm:mb-2">
                   {item.title}
                 </h3>
               </div>
             </div>
 
             {/* Ícone de zoom */}
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="bg-[var(--accent)]/90 backdrop-blur-sm p-2 rounded-sm">
-                <ZoomIn className="w-4 h-4 md:w-5 md:h-5 text-[var(--preto-carvao)]" />
+            <div className="absolute top-2 right-2 sm:top-4 sm:right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="bg-[var(--accent)]/90 backdrop-blur-sm p-1.5 sm:p-2 rounded-sm">
+                <ZoomIn className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[var(--preto-carvao)]" />
               </div>
             </div>
           </motion.div>
@@ -255,19 +336,19 @@ export default function Gallery() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative max-w-6xl w-full max-h-[90vh]"
+              className="relative max-w-6xl w-full max-h-[85vh] sm:max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Botão fechar */}
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-[var(--off-white)] hover:text-[var(--accent)] transition-colors duration-300 z-10"
+                className="absolute -top-8 sm:-top-10 md:-top-12 right-0 sm:right-4 text-[var(--off-white)] hover:text-[var(--accent)] transition-colors duration-300 z-10 p-2"
               >
-                <X className="w-8 h-8" />
+                <X className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
               </button>
 
               {/* Imagem ampliada */}
-              <div className="relative w-full h-full aspect-video rounded-sm overflow-hidden bg-[var(--preto-carvao)]/50">
+              <div className="relative w-full h-full aspect-video sm:aspect-square md:aspect-video rounded-sm overflow-hidden bg-[var(--preto-carvao)]/50">
                 <AnimatePresence mode="wait">
                   {imageLoading && (
                     <motion.div
@@ -348,7 +429,7 @@ export default function Gallery() {
                       className="relative w-full h-full"
                     >
                       <Image
-                        src={selectedItem.image}
+                        src={encodeImagePath(selectedItem.image)}
                         alt={selectedItem.title}
                         fill
                         quality={100}
@@ -372,11 +453,11 @@ export default function Gallery() {
               </div>
 
               {/* Informações */}
-              <div className="mt-6 text-center">
-                <span className="text-sm font-light text-[var(--accent)] uppercase tracking-wider mb-2 block">
+              <div className="mt-4 sm:mt-6 text-center px-4">
+                <span className="text-xs sm:text-sm font-light text-[var(--accent)] uppercase tracking-wider mb-1 sm:mb-2 block">
                   {selectedItem.category}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-light text-[var(--off-white)]">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-[var(--off-white)]">
                   {selectedItem.title}
                 </h3>
               </div>
