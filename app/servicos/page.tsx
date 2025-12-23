@@ -70,6 +70,34 @@ const services: Service[] = [
     image: '/cozinha_classica_c2_desfoque.jpg',
     color: 'bege',
   },
+  {
+    id: 'marketing-digital',
+    title: 'Marketing Digital',
+    subtitle: 'Estratégias que geram resultados',
+    description: 'Desenvolvemos estratégias completas de marketing digital para aumentar sua presença online, atrair clientes qualificados e converter visitantes em vendas. Utilizamos as melhores práticas e ferramentas para maximizar o retorno sobre investimento.',
+    features: [
+      'Gestão de redes sociais',
+      'Google Ads e Facebook Ads',
+      'SEO e otimização de conteúdo',
+      'E-mail marketing e automação',
+    ],
+    image: '/Briefing Chanel copiar.jpg',
+    color: 'dourado',
+  },
+  {
+    id: 'criacao-sites',
+    title: 'Criação de Sites',
+    subtitle: 'Presença digital profissional',
+    description: 'Criamos sites modernos, responsivos e otimizados que representam sua marca com excelência. Desenvolvemos soluções personalizadas que combinam design elegante, performance excepcional e experiência do usuário impecável.',
+    features: [
+      'Design responsivo e moderno',
+      'Otimização para SEO',
+      'Performance e velocidade',
+      'Integração com sistemas',
+    ],
+    image: '/IDENTIDADE_11-1_View04 copy.jpg',
+    color: 'bege',
+  },
 ];
 
 export default function ServicosPage() {

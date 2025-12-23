@@ -279,16 +279,37 @@ export default function Gallery() {
     img.src = item.image;
   }, [selectedImage]);
 
-  const getSizeClasses = (size: string) => {
+  const getSizeClasses = (size: string, index: number, totalItems: number) => {
+    // Calcular quantos itens restam
+    const remainingItems = totalItems - index;
+    
+    // Para os últimos itens, forçar row-span-1 para manter a última linha uniforme
+    // Considerando o máximo de colunas em cada breakpoint:
+    // sm: 2 colunas, lg: 3 colunas, xl: 4 colunas
+    // Usar o maior valor (4) para garantir que funcione em todos os breakpoints
+    const isLastRow = remainingItems <= 4;
+    
     switch (size) {
       case 'large':
         // 2x2 - ocupa 2 colunas e 2 linhas (2x altura base)
+        // Se estiver na última linha, reduzir para wide (2x1)
+        if (isLastRow) {
+          return 'col-span-1 sm:col-span-2 lg:col-span-2 xl:col-span-2 row-span-1';
+        }
         return 'col-span-1 sm:col-span-2 lg:col-span-2 xl:col-span-2 row-span-2';
       case 'tall':
         // 1x2 - ocupa 1 coluna e 2 linhas (2x altura base)
+        // Se estiver na última linha, reduzir para medium (1x1)
+        if (isLastRow) {
+          return 'col-span-1 row-span-1';
+        }
         return 'col-span-1 row-span-2';
       case 'wide':
         // 2x1 - ocupa 2 colunas e 1 linha (1x altura base)
+        // Se estiver na última linha e sobrar apenas 1 item, pode precisar ajustar
+        if (isLastRow && remainingItems === 1) {
+          return 'col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-4 row-span-1';
+        }
         return 'col-span-1 sm:col-span-2 lg:col-span-2 xl:col-span-2 row-span-1';
       case 'medium':
       default:
@@ -336,7 +357,9 @@ export default function Gallery() {
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             className={`relative group cursor-pointer overflow-hidden bg-[var(--preto-carvao)] ${getSizeClasses(
-              item.size
+              item.size,
+              index,
+              portfolioItems.length
             )}`}
             onClick={() => setSelectedImage(item.id)}
             onMouseEnter={() => handleMouseEnter(item.image)}
