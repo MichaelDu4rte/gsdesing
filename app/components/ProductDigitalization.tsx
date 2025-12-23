@@ -32,8 +32,8 @@ export default function ProductDigitalization() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Imagens - substitua pelas imagens reais de antes/depois
-  const beforeImage = '/project1.jpg';
-  const afterImage = '/project2.jpg';
+  const beforeImage = '/antes.jpg';
+  const afterImage = '/depois.jpg';
 
   // Função para atualizar a posição do slider
   const updateSliderPosition = (clientX: number) => {
