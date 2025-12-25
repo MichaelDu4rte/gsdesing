@@ -61,12 +61,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-3xl capitalize sm:text-3xl md:text-3xlxl lg:text-3xl xl:text-2xl font-light tracking-tight text-[var(--off-white)] mb-4 sm:mb-6 leading-tight px-4"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[var(--off-white)] mb-5 sm:mb-6 leading-tight px-4"
         >
-          <span className="block">Transforme seus projetos imobiliários em experiências visuais
+          <span className="block">Visualizações 3D que
           </span>
-          <span className="block font-normal text-[var(--dourado-fosco)]">
-            imersivas que convertem visitantes em clientes
+          <span className="block font-semibold text-[var(--dourado-fosco)]">
+            convertem visitantes em clientes
           </span>
         </motion.h1>
 
