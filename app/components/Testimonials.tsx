@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Quote, Star } from 'lucide-react';
-import Image from 'next/image';
+import { Quote, Star, User } from 'lucide-react';
 
 const testimonials = [
   {
@@ -10,7 +9,6 @@ const testimonials = [
     name: 'Ana Carolina Silva',
     role: 'Diretora de Marketing',
     company: 'E-commerce Premium',
-    image: '/project1.jpg', // Substitua por foto do cliente
     rating: 5,
     text: 'As visualizações 3D transformaram completamente a experiência de compra dos nossos clientes. As conversões aumentaram em 45% e as devoluções diminuíram significativamente.',
   },
@@ -19,7 +17,6 @@ const testimonials = [
     name: 'Roberto Mendes',
     role: 'CEO',
     company: 'Design Interiores',
-    image: '/project2.jpg', // Substitua por foto do cliente
     rating: 5,
     text: 'A qualidade dos modelos 3D superou todas as expectativas. Nossos clientes conseguem visualizar os produtos em seus ambientes antes mesmo de comprar.',
   },
@@ -28,7 +25,6 @@ const testimonials = [
     name: 'Mariana Costa',
     role: 'Gerente de Produto',
     company: 'TechHome Solutions',
-    image: '/project3.jpg', // Substitua por foto do cliente
     rating: 5,
     text: 'O trabalho de digitalização foi excepcional. Os blocos SKP que recebemos são perfeitos e facilitaram muito nossa integração com o SketchUp.',
   },
@@ -37,7 +33,6 @@ const testimonials = [
     name: 'Carlos Eduardo',
     role: 'Fundador',
     company: 'Luxury Décor',
-    image: '/project4.jpg', // Substitua por foto do cliente
     rating: 5,
     text: 'As visualizações 360º dos nossos produtos são impressionantes. Nossos clientes adoram a interatividade e isso se reflete diretamente nas vendas.',
   },
@@ -46,7 +41,6 @@ const testimonials = [
     name: 'Juliana Santos',
     role: 'Diretora Comercial',
     company: 'HomeStyle',
-    image: '/project5.jpg', // Substitua por foto do cliente
     rating: 5,
     text: 'Profissionalismo, qualidade e atenção aos detalhes. As imagens de packshot que recebemos são de nível internacional.',
   },
@@ -55,7 +49,6 @@ const testimonials = [
     name: 'Fernando Lima',
     role: 'Diretor Criativo',
     company: 'Modern Living',
-    image: '/project6.jpg', // Substitua por foto do cliente
     rating: 5,
     text: 'A transformação dos nossos produtos em modelos 3D foi incrível. Aumentou significativamente o engajamento dos nossos clientes.',
   },
@@ -195,19 +188,12 @@ export default function Testimonials() {
                   >
                     {/* Avatar */}
                     <div
-                      className="relative w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 overflow-hidden"
+                      className="relative w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 flex items-center justify-center bg-[var(--bege-quente)]/60 border border-[var(--dourado-fosco)]/20 group-hover:border-[var(--dourado-fosco)]/40 transition-all duration-300"
                       style={{
                         clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))',
                       }}
                     >
-                      <Image
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        fill
-                        quality={90}
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        sizes="56px"
-                      />
+                      <User className="w-6 h-6 sm:w-7 sm:h-7 text-[var(--dourado-fosco)]/70 group-hover:text-[var(--dourado-fosco)] transition-colors duration-300" strokeWidth={1.5} />
                     </div>
 
                     {/* Informações */}
