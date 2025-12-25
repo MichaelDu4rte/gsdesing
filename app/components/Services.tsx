@@ -9,7 +9,7 @@ import DemoModal from './DemoModal';
 const services = [
   {
     id: 'demo',
-    title: 'Agendar Demonstração',
+    title: 'Demonstração',
     description: 'Veja nossos projetos em ação e descubra como podemos transformar seus imóveis',
     icon: Play,
     href: '#',
